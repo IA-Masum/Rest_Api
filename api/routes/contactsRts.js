@@ -3,34 +3,19 @@ const router = express.Router();
 const contactsController = require("../controllers/contactCtrlr");
 
 
-//Get Route
+//Get Route to get All Contacts
 router.get("/", contactsController.getAllContactsController);
 
-//Post Route
+//Post Route for a single contacts
 router.post("/", contactsController.postNewContactController);
 
+//Get Route to get a single contact
+router.get("/:id", contactsController.getSingleContact);
 
-router.get("/:id", (req, res, next) => {
-  let id = req.params.id;
-  res.json({
-    id
-  });
-})
+// Put Route to update a single contact
+router.put("/:id", contactsController.editContact);
 
-
-router.put("/id", (req, res, next) => {
-  let id = req.params.id;
-  res.json({
-    id
-  });
-})
-
-
-router.delete("/id", (req, res, next) => {
-  let id = req.params.id;
-  res.json({
-    id
-  });
-})
+// Delete Route to delete a single contact
+router.delete("/:id", contactsController.deleteContact);
 
 module.exports = router;
