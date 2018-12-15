@@ -18,8 +18,13 @@ router.get("/", (req, res, next) => {
 
 //Post Route
 router.post("/", (req, res, next) => {
+
+  let name = req.body.name;
+  let email = req.body.email;
+
+  contacts.push({ name, email });
   res.json({
-    message: "I am from Post Route."
+    message: "Data Saved.",
   });
 });
 
