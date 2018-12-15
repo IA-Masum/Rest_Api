@@ -1,9 +1,28 @@
-const express = require("express");
-const app = express();
+/*********** Dependencies **********/
 
-const PORT = process.env.PORT || 3000;
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+
+/**************************************/
+
+/************ Route Imports **********/
 
 const contactRoutes = require("./api/routes/contactsRts");
+
+/**************************************/
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+
+/************* MiddleWares ************/
+
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+/***************************************/
+
 
 app.use("/api/contacts", contactRoutes);
 app.get("/", (req, res) => {
