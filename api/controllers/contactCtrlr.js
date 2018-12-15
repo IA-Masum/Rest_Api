@@ -40,7 +40,7 @@ const postNewContactController = (req, res, next) => {
     });
 }
 
-//Sent Single contact to client
+//Send Single contact to client
 const getSingleContact = (req, res, next) => {
 
   let id = req.params.id;

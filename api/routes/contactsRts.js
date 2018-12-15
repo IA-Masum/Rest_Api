@@ -6,7 +6,7 @@ const contactsController = require("../controllers/contactCtrlr");
 //Get Route to get All Contacts
 router.get("/", contactsController.getAllContactsController);
 
-//Post Route for a single contacts
+//Post Route to Create a New contact
 router.post("/", contactsController.postNewContactController);
 
 //Get Route to get a single contact
