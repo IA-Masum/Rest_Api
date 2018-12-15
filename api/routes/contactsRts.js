@@ -1,31 +1,44 @@
 const express = require("express");
 const router = express.Router();
 
-
-
-let contacts = [
-  { name: "IA Masum", email: "iamasum133@gmail.com" },
-  { name: "Imran Ali", email: "imranali@gmail.com" },
-  { name: "Masum", email: "masum@gmail.com" },
-  { name: "Maruf", email: "maruf@gmail.com" },
-  { name: "Mahmud", email: "mahmud@gmail.com" }
-]
+const Contact = require("../models/ContactMdls");
 
 //Get Route
 router.get("/", (req, res, next) => {
-  res.status(200).json(contacts);
+  Contact.find()
+    .then(contacts => {
+      res.status(200).json(contacts);
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: "Error Occurred.",
+        error: err
+      });
+    });
 });
 
 //Post Route
 router.post("/", (req, res, next) => {
 
-  let name = req.body.name;
-  let email = req.body.email;
-
-  contacts.push({ name, email });
-  res.json({
-    message: "Data Saved.",
+  let contact = new Contact({
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email
   });
+
+  contact.save()
+    .then(data => {
+      res.status(201).json({
+        message: "Contact Saved.",
+        contact: data
+      })
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: "Error Occurred.",
+        error: err
+      });
+    });
 });
 
 

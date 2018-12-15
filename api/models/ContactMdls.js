@@ -27,7 +27,7 @@ let ContactSchema = new Schema({
       validator: (v) => {
         return validTest.isEmail(v);
       },
-      message: `${v} is not an Email`
+      message: `{VALUE} is not an Email`
     }
   }
 });
