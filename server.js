@@ -4,8 +4,21 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 /**************************************/
+
+// Connect to database
+mongoose.connect("mongodb://localhost/contacts-db");
+const db = mongoose.connection;
+
+db.on("error", (err) => {
+  console.log(err);
+});
+
+db.once("open", () => {
+  console.log("Database Connected");
+});
 
 /************ Route Imports **********/
 
