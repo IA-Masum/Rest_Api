@@ -23,11 +23,12 @@ let ContactSchema = new Schema({
   email: {
     type: String,
     trim: true,
+    unique: true,
     validate: {
       validator: (v) => {
         return validTest.isEmail(v);
       },
-      message: `{VALUE} is not an Email`
+      message: `{VALUE} is not an Email.`
     }
   }
 });

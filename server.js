@@ -23,6 +23,7 @@ db.once("open", () => {
 /************ Route Imports **********/
 
 const contactRoutes = require("./api/routes/contactsRts");
+const userRoutes = require("./api/routes/userRts");
 
 /**************************************/
 
@@ -40,6 +41,7 @@ app.use(cors());
 
 
 app.use("/api/contacts", contactRoutes);
+app.use("/api/users", userRoutes);
 app.get("/", (req, res) => {
   res.send(`<h1>Hello World!</h1>`);
 });
