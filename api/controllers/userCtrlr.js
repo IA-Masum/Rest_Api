@@ -1,5 +1,6 @@
 
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/UserMdls");
 
@@ -95,7 +96,10 @@ const loginUser = (req, res, next) => {
 
             //Password Matched
             //Let Client Login
-            res.json({ message: "Login Successful." });
+
+            // Create a token
+            let token = jwt.sign({ email: user.email, _id: user._id }, "SECRET", { expiresIn: "2h" });
+            res.json({ message: "Login Successful.", token });
           } else {
 
             //Password Didn't matched
